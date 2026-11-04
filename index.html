@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Главная – ДогПередержка</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+
+<!-- Навигация -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">🐕 ДогПередержка</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Главная</a></li>
+        <li class="nav-item"><a class="nav-link" href="catalog.html">Передержки</a></li>
+        <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
+        <li class="nav-item"><a class="nav-link" href="booking.html">Бронирование</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="container my-5">
+  <div class="row align-items-center g-4">
+    <div class="col-12 col-lg-6">
+      <h1 class="display-5 fw-bold">Надёжная передержка для вашей собаки</h1>
+      <p class="lead text-muted">Проверенные ситтеры, ежедневные фото- и видеоотчёты, страховка на время проживания.</p>
+      <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#pickModal">Найти передержку</button>
+    </div>
+    <div class="col-12 col-lg-6">
+      <div class="placeholder-box p-5 bg-light border rounded text-center">
+        <p class="mb-0 text-muted">Здесь может быть фото счастливой собаки</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Преимущества -->
+<section class="container my-5">
+  <h2 class="text-center mb-4">Почему нас выбирают</h2>
+  <div class="row g-4">
+    <div class="col-12 col-md-4">
+      <div class="p-4 border rounded h-100 bg-white">
+        <h3 class="h5">✅ Проверенные ситтеры</h3>
+        <p class="mb-0 text-muted">Каждый ситтер проходит проверку документов и собеседование.</p>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="p-4 border rounded h-100 bg-white">
+        <h3 class="h5">📸 Фото- и видеоотчёты</h3>
+        <p class="mb-0 text-muted">Ежедневно получайте фото и видео вашего питомца.</p>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="p-4 border rounded h-100 bg-white">
+        <h3 class="h5">🛡 Страховка</h3>
+        <p class="mb-0 text-muted">Питомец застрахован на всё время проживания у ситтера.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Популярные ситтеры -->
+<section class="container my-5" id="popular">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Популярные ситтеры</h2>
+    <a class="btn btn-outline-primary" href="catalog.html">Все ситтеры</a>
+  </div>
+  <div class="row g-4">
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <span class="badge bg-success mb-2">Проверенный</span>
+          <h3 class="card-title h5">Анна, 28 лет</h3>
+          <p class="card-text text-muted">Опыт 5 лет, живёт в квартире с собакой. Район: Центральный.</p>
+          <p class="fw-bold fs-5 mt-auto">800 ₽ / сутки</p>
+          <a class="btn btn-primary" href="booking.html">Забронировать</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <span class="badge bg-warning text-dark mb-2">Топ-ситтер</span>
+          <h3 class="card-title h5">Михаил, 34 года</h3>
+          <p class="card-text text-muted">Опыт 8 лет, частный дом с участком. Район: Северный.</p>
+          <p class="fw-bold fs-5 mt-auto">1000 ₽ / сутки</p>
+          <a class="btn btn-primary" href="booking.html">Забронировать</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <span class="badge bg-secondary mb-2">Новичок</span>
+          <h3 class="card-title h5">Ольга, 22 года</h3>
+          <p class="card-text text-muted">Опыт 1 год, без своих животных. Район: Южный.</p>
+          <p class="fw-bold fs-5 mt-auto">600 ₽ / сутки</p>
+          <a class="btn btn-primary" href="booking.html">Забронировать</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Модальное окно быстрого подбора -->
+<div class="modal fade" id="pickModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title h5">Быстрый подбор передержки</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="pick-dates" class="form-label">Даты передержки</label>
+            <input type="text" id="pick-dates" class="form-control" placeholder="01.07 – 10.07" required>
+          </div>
+          <div class="mb-3">
+            <label for="pick-breed" class="form-label">Порода / размер собаки</label>
+            <input type="text" id="pick-breed" class="form-control" placeholder="Корги, средний" required>
+          </div>
+          <div class="mb-3">
+            <label for="pick-district" class="form-label">Район</label>
+            <select id="pick-district" class="form-select" required>
+              <option selected>Выберите район</option>
+              <option>Центральный</option>
+              <option>Северный</option>
+              <option>Южный</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary">Подобрать</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Подвал -->
+<footer class="bg-dark text-white py-4 mt-5">
+  <div class="container">
+    <div class="row align-items-center g-3">
+      <div class="col-12 col-md-6">
+        <p class="mb-0">&copy; 2026 ДогПередержка. Учебный проект. Гаврилов Г. ЭФБО-11-25</p>
+      </div>
+      <div class="col-12 col-md-6 text-md-end">
+        <a class="text-white text-decoration-none me-3" href="catalog.html">Передержки</a>
+        <a class="text-white text-decoration-none" href="contacts.html">Контакты</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
