@@ -7,172 +7,236 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/custom.css">
 </head>
-<body class="bg-light">
+<body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!-- Навигация -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-header-footer sticky-top py-3 shadow-sm">
   <div class="container">
-    <a class="navbar-brand" href="index.html">🐕 ДогПередержка</a>
+    <a class="navbar-brand fw-bold fs-4" href="index.html">🐕 ДогПередержка</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto fw-medium">
         <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
         <li class="nav-item"><a class="nav-link" href="catalog.html">Передержки</a></li>
         <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
-        <li class="nav-item"><a class="nav-link active" href="booking.html">Бронирование</a></li>
+        <li class="nav-item ms-lg-4"><a class="nav-link active" href="booking.html">Забронировать</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<main class="container my-5">
-  <div class="row justify-content-center">
-    <div class="col-12 col-lg-9">
-
-      <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
-          <h1 class="h4 mb-0">Бронирование передержки</h1>
-        </div>
-        <div class="card-body">
-          <div class="alert alert-info" role="alert">
-            Заполните форму. Поля со звёздочкой обязательны.
-          </div>
-
-          <form>
-            <div class="row g-3">
-              <!-- Ситтер -->
-              <div class="col-12 col-md-6">
-                <label for="b-sitter" class="form-label">Ситтер *</label>
-                <select id="b-sitter" class="form-select" required>
-                  <option selected>Выберите ситтера</option>
-                  <option>Анна — Центральный, 800 ₽</option>
-                  <option>Михаил — Северный, 1000 ₽</option>
-                  <option>Ольга — Южный, 600 ₽</option>
-                  <option>Дмитрий — Северный, 1200 ₽</option>
-                  <option>Елена — Центральный, 900 ₽</option>
-                  <option>Игорь — Южный, 700 ₽</option>
-                  <option>Мария — Северный, 1100 ₽</option>
-                  <option>Алексей — Центральный, 950 ₽</option>
-                </select>
-              </div>
-
-              <!-- Даты -->
-              <div class="col-12 col-md-3">
-                <label for="b-in" class="form-label">Дата заезда *</label>
-                <input type="date" id="b-in" class="form-control" required>
-              </div>
-              <div class="col-12 col-md-3">
-                <label for="b-out" class="form-label">Дата выезда *</label>
-                <input type="date" id="b-out" class="form-control" required>
-              </div>
-
-              <!-- Кол-во собак и порода -->
-              <div class="col-12 col-md-6">
-                <label for="b-count" class="form-label">Количество собак *</label>
-                <input type="number" id="b-count" class="form-control" min="1" value="1" required>
-              </div>
-              <div class="col-12 col-md-6">
-                <label for="b-breed" class="form-label">Порода / размер *</label>
-                <input type="text" id="b-breed" class="form-control" placeholder="Корги, средний" required>
-              </div>
-
-              <!-- Доп. услуги -->
-              <div class="col-12">
-                <label class="form-label">Дополнительные услуги</label>
-                <div class="form-check">
-                  <input class="form-check-input extra" type="checkbox" value="300" id="ex-walk">
-                  <label class="form-check-label" for="ex-walk">Дополнительный выгул — 300 ₽</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input extra" type="checkbox" value="500" id="ex-bath">
-                  <label class="form-check-label" for="ex-bath">Купание — 500 ₽</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input extra" type="checkbox" value="800" id="ex-vet">
-                  <label class="form-check-label" for="ex-vet">Ветеринарный осмотр — 800 ₽</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input extra" type="checkbox" value="600" id="ex-photo">
-                  <label class="form-check-label" for="ex-photo">Фотосессия — 600 ₽</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input extra" type="checkbox" value="700" id="ex-delivery">
-                  <label class="form-check-label" for="ex-delivery">Доставка питомца до ситтера — 700 ₽</label>
-                </div>
-              </div>
-
-              <!-- Согласие -->
-              <div class="col-12">
-                <div class="form-check">
-                  <input id="b-agree" class="form-check-input" type="checkbox" required>
-                  <label class="form-check-label" for="b-agree">Я согласен на обработку данных *</label>
-                </div>
-              </div>
-
-              <!-- Итог -->
-              <div class="col-12">
-                <div class="alert alert-success">
-                  <strong>Итоговая стоимость:</strong> <span id="total">0</span> ₽
-                  <br>
-                  <small class="text-muted">Расчёт: стоимость за сутки × количество суток + доп. услуги</small>
-                </div>
-              </div>
-
-              <div class="col-12 d-flex gap-2">
-                <button class="btn btn-primary" type="submit">Забронировать передержку</button>
-                <button class="btn btn-outline-secondary" type="reset">Очистить</button>
-              </div>
-            </div>
-          </form>
-        </div>
+<main class="container my-5 pt-4">
+  <div class="row g-5">
+    
+    <!-- Левая колонка: Текст и контакты -->
+    <div class="col-12 col-lg-5">
+      <h1 class="display-5 fw-bold text-dark mb-3">Подобрать<br>передержку</h1>
+      <p class="lead text-muted mb-4">Оставьте контакты и желаемые даты. Наш менеджер поможет выбрать ситтера и ответит на вопросы.</p>
+      
+      <!-- Логичная скидка: чем дольше собака живет у ситтера, тем дешевле сутки -->
+      <div class="alert alert-success bg-white border-0 shadow-sm rounded-4 mb-4" role="alert" style="border-left: 4px solid #516028 !important;">
+        <p class="mb-0 fw-medium text-dark"><strong>Выгодно:</strong> скидка 10% на всю передержку при бронировании от 14 дней.</p>
       </div>
 
+      <div class="contact-box shadow-sm">
+        <h5 class="fw-bold mb-3 text-dark">На связи</h5>
+        <ul class="list-unstyled mb-0 text-muted">
+          <li class="mb-2"><strong>Ежедневно:</strong> 10:00–22:00</li>
+          <li class="mb-2"><strong>Почта:</strong> <a href="mailto:hello@dogperederzhka.ru" class="text-decoration-none text-muted">hello@dogperederzhka.ru</a></li>
+          <li class="mb-2"><strong>Телефон:</strong> <a href="tel:+74951202200" class="text-decoration-none text-muted">+7 (495) 120-22-00</a></li>
+        </ul>
+      </div>
     </div>
+
+    <!-- Правая колонка: Форма -->
+    <div class="col-12 col-lg-7">
+      <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+        <!-- Добавлен атрибут novalidate, чтобы отключить стандартные всплывающие окна браузера и использовать нашу подсветку -->
+        <form id="booking-form" novalidate>
+          <div class="row g-4">
+            
+            <!-- Имя -->
+            <div class="col-12 col-md-6">
+              <label for="b-name" class="form-label text-muted small fw-bold">Имя *</label>
+              <input type="text" id="b-name" class="form-control form-control-lg shadow-none" 
+                     placeholder="Как к вам обращаться?" required minlength="2" 
+                     pattern="^[А-Яа-яЁёA-Za-z\s\-]+$">
+              <div class="invalid-feedback">Введите корректное имя (только буквы).</div>
+            </div>
+            
+            <!-- Email -->
+            <div class="col-12 col-md-6">
+              <label for="b-email" class="form-label text-muted small fw-bold">E-mail *</label>
+              <input type="email" id="b-email" class="form-control form-control-lg shadow-none" 
+                     placeholder="name@example.com" required>
+              <div class="invalid-feedback">Введите корректный адрес электронной почты.</div>
+            </div>
+
+            <!-- Телефон -->
+            <div class="col-12">
+              <label for="b-phone" class="form-label text-muted small fw-bold">Телефон *</label>
+              <div class="input-group input-group-lg has-validation">
+                <span class="input-group-text bg-white text-muted border-end-0">+7</span>
+                <input type="tel" id="b-phone" class="form-control border-start-0 ps-0 shadow-none" 
+                       placeholder="900 000-00-00" required pattern="[0-9]{10}" maxlength="10">
+                <div class="invalid-feedback">Введите ровно 10 цифр номера телефона.</div>
+              </div>
+            </div>
+
+            <!-- Ситтер -->
+            <div class="col-12">
+              <label for="b-sitter" class="form-label text-muted small fw-bold">Выберите ситтера *</label>
+              <select id="b-sitter" class="form-select form-select-lg shadow-none" required>
+                <option selected disabled value="">Выберите из списка</option>
+                <option value="Анна — Центральный, 800 ₽">Анна — Центральный, 800 ₽</option>
+                <option value="Михаил — Северный, 1000 ₽">Михаил — Северный, 1000 ₽</option>
+                <option value="Ольга — Южный, 600 ₽">Ольга — Южный, 600 ₽</option>
+                <option value="Дмитрий — Северный, 1200 ₽">Дмитрий — Северный, 1200 ₽</option>
+                <option value="Елена — Центральный, 900 ₽">Елена — Центральный, 900 ₽</option>
+                <option value="Игорь — Южный, 700 ₽">Игорь — Южный, 700 ₽</option>
+                <option value="Мария — Северный, 1100 ₽">Мария — Северный, 1100 ₽</option>
+                <option value="Алексей — Центральный, 950 ₽">Алексей — Центральный, 950 ₽</option>
+              </select>
+              <div class="invalid-feedback">Пожалуйста, выберите ситтера.</div>
+            </div>
+
+            <!-- Даты -->
+            <div class="col-12 col-md-6">
+              <label for="b-in" class="form-label text-muted small fw-bold">Дата заезда *</label>
+              <input type="date" id="b-in" class="form-control form-control-lg shadow-none" required>
+              <div class="invalid-feedback">Выберите дату заезда.</div>
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="b-out" class="form-label text-muted small fw-bold">Дата выезда *</label>
+              <input type="date" id="b-out" class="form-control form-control-lg shadow-none" required>
+              <div class="invalid-feedback">Дата выезда должна быть позже даты заезда.</div>
+            </div>
+
+            <!-- Кол-во собак и размер -->
+            <div class="col-12 col-md-6">
+              <label for="b-count" class="form-label text-muted small fw-bold">Количество собак *</label>
+              <input type="number" id="b-count" class="form-control form-control-lg shadow-none" 
+                     min="1" max="5" value="1" required>
+              <div class="invalid-feedback">Можно указать от 1 до 5 собак.</div>
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="b-breed" class="form-label text-muted small fw-bold">Порода / размер *</label>
+              <input type="text" id="b-breed" class="form-control form-control-lg shadow-none" 
+                     placeholder="Корги, средний" required minlength="3">
+              <div class="invalid-feedback">Укажите породу или размер собаки.</div>
+            </div>
+
+            <!-- Доп услуги -->
+            <div class="col-12 mt-4">
+              <label class="form-label text-muted small fw-bold mb-3">Дополнительные услуги</label>
+              <div class="row g-2">
+                <div class="col-12 col-md-6">
+                  <div class="form-check p-3 border rounded-3 bg-light bg-opacity-50 h-100">
+                    <input class="form-check-input extra ms-0 me-2" type="checkbox" value="300" id="ex-walk">
+                    <label class="form-check-label text-dark" for="ex-walk">Доп. выгул <span class="text-muted float-end">+300 ₽</span></label>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="form-check p-3 border rounded-3 bg-light bg-opacity-50 h-100">
+                    <input class="form-check-input extra ms-0 me-2" type="checkbox" value="500" id="ex-bath">
+                    <label class="form-check-label text-dark" for="ex-bath">Купание <span class="text-muted float-end">+500 ₽</span></label>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="form-check p-3 border rounded-3 bg-light bg-opacity-50 h-100">
+                    <input class="form-check-input extra ms-0 me-2" type="checkbox" value="800" id="ex-vet">
+                    <label class="form-check-label text-dark" for="ex-vet">Вет. осмотр <span class="text-muted float-end">+800 ₽</span></label>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="form-check p-3 border rounded-3 bg-light bg-opacity-50 h-100">
+                    <input class="form-check-input extra ms-0 me-2" type="checkbox" value="700" id="ex-delivery">
+                    <label class="form-check-label text-dark" for="ex-delivery">Доставка <span class="text-muted float-end">+700 ₽</span></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Итог -->
+            <div class="col-12 mt-4">
+              <div class="alert alert-success bg-success bg-opacity-10 border-success border-opacity-25 rounded-4 p-4 d-flex justify-content-between align-items-center">
+                <div>
+                  <h6 class="fw-bold mb-1 text-dark">Итоговая стоимость:</h6>
+                  <small class="text-muted">Расчёт: цена ситтера × дни + доп. услуги</small>
+                </div>
+                <div class="fs-3 fw-bold text-success">
+                  <span id="total">0</span> ₽
+                </div>
+              </div>
+            </div>
+
+            <!-- Согласие -->
+            <div class="col-12">
+              <div class="form-check">
+                <input id="b-agree" class="form-check-input" type="checkbox" required>
+                <label class="form-check-label text-muted small" for="b-agree">
+                  Я согласен на обработку персональных данных *
+                </label>
+                <div class="invalid-feedback">Необходимо ваше согласие.</div>
+              </div>
+            </div>
+
+            <!-- Кнопки -->
+            <div class="col-12 d-flex gap-3 mt-4">
+              <button class="btn btn-warning text-dark btn-lg px-5 py-3 rounded-pill fw-bold shadow-sm w-100 w-md-auto" type="submit">Отправить заявку</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
   </div>
 </main>
 
-<footer class="bg-dark text-white py-4 mt-5">
-  <div class="container text-center">
-    <p class="mb-0">&copy; 2026 ДогПередержка. Гаврилов Г. ЭФБО-11-25</p>
+<!-- Подвал -->
+<footer class="bg-header-footer text-white py-5 mt-auto">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-12 col-lg-4">
+        <h4 class="fw-bold mb-3 text-warning">🐕 ДогПередержка</h4>
+        <p class="text-white-50">Сервис по поиску надежной передержки для собак. Оставляйте питомца профессионалам с ежедневными отчетами.</p>
+      </div>
+      <div class="col-6 col-md-3 col-lg-2 offset-lg-1">
+        <h6 class="fw-bold mb-3">Навигация</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a class="text-white-50 footer-link" href="index.html">Главная</a></li>
+          <li class="mb-2"><a class="text-white-50 footer-link" href="catalog.html">Передержки</a></li>
+          <li class="mb-2"><a class="text-white-50 footer-link" href="contacts.html">Контакты</a></li>
+          <li class="mb-2"><a class="text-white-50 footer-link" href="booking.html">Бронирование</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md-3 col-lg-2">
+        <h6 class="fw-bold mb-3">Связаться</h6>
+        <ul class="list-unstyled text-white-50">
+          <li class="mb-2">hello@dogperederzhka.ru</li>
+          <li class="mb-2">+7 (495) 120-22-00</li>
+          <li class="mb-2">Ежедневно, 10:00–22:00</li>
+        </ul>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3 text-center text-md-start">
+        <h6 class="fw-bold mb-3">ДогПередержка</h6>
+        <p class="text-white-50 mb-2">Москва, проспект Мира, 119</p>
+        <a href="booking.html" class="btn btn-warning text-dark fw-bold px-4 py-2 rounded-3 shadow-sm">Забронировать</a>
+      </div>
+    </div>
+    <hr class="border-secondary mt-5 mb-4">
+    <div class="row">
+      <div class="col-12 text-center">
+        <p class="text-white-50 small mb-0">&copy; 2026 ДогПередержка. Все права защищены.</p>
+      </div>
+    </div>
   </div>
 </footer>
 
+<!-- Подключение скриптов -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-  // Автоматический расчёт стоимости
-  const sitterPrices = {
-    "Анна — Центральный, 800 ₽": 800,
-    "Михаил — Северный, 1000 ₽": 1000,
-    "Ольга — Южный, 600 ₽": 600,
-    "Дмитрий — Северный, 1200 ₽": 1200,
-    "Елена — Центральный, 900 ₽": 900,
-    "Игорь — Южный, 700 ₽": 700,
-    "Мария — Северный, 1100 ₽": 1100,
-    "Алексей — Центральный, 950 ₽": 950
-  };
-
-  function calcTotal() {
-    const sitter = document.getElementById('b-sitter').value;
-    const price = sitterPrices[sitter] || 0;
-    const dIn = document.getElementById('b-in').value;
-    const dOut = document.getElementById('b-out').value;
-
-    let days = 0;
-    if (dIn && dOut) {
-      const ms = new Date(dOut) - new Date(dIn);
-      days = Math.max(0, Math.round(ms / 86400000));
-    }
-
-    let extras = 0;
-    document.querySelectorAll('.extra:checked').forEach(c => extras += Number(c.value));
-
-    document.getElementById('total').textContent = (price * days) + extras;
-  }
-
-  document.querySelectorAll('#b-sitter, #b-in, #b-out, .extra').forEach(el => {
-    el.addEventListener('change', calcTotal);
-  });
-</script>
+<script src="js/booking.js"></script>
 </body>
 </html>
