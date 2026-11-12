@@ -13,7 +13,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-header-footer sticky-top py-3 shadow-sm">
   <div class="container">
     <a class="navbar-brand fw-bold fs-4" href="index.html">🐕 ДогПередержка</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-label="Переключить навигацию">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mainNavbar">
@@ -45,7 +45,7 @@
         <div class="card-body p-4">
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="h5 fw-bold mb-0 text-black">Фильтры</h2>
-            <button type="button" class="btn btn-sm btn-link text-black text-decoration-none p-0 fw-medium" onclick="document.getElementById('filter-form').reset(); document.getElementById('apply-filters').click();">Сбросить</button>
+            <button type="button" id="reset-filters" class="btn btn-sm btn-link text-black text-decoration-none p-0 fw-medium">Сбросить</button>
           </div>
           
           <form id="filter-form">
@@ -96,6 +96,13 @@
 
     <!-- Сетка карточек -->
     <div class="col-12 col-lg-9">
+      
+      <!-- Алерт умного подбора -->
+      <div id="smart-alert" class="alert alert-info alert-dismissible fade show d-none shadow-sm rounded-4 mb-4" role="alert">
+        <strong>Умный подбор сработал!</strong> Ниже показаны ситтеры, подходящие под ваши параметры.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+      </div>
+
       <!-- Контейнер для сообщения об отсутствии результатов -->
       <div id="no-results" class="alert alert-warning text-center d-none shadow-sm rounded-4" role="alert">
         По вашему запросу ничего не найдено. Попробуйте изменить параметры фильтра.
@@ -106,10 +113,17 @@
         <!-- Карточка 1 -->
         <div class="col-12 col-md-6 col-xl-4 sitter-card" 
              data-district="Центральный" data-price="800" data-size="Средний" data-exp="5">
-          <div class="card h-100 bg-white border-0 shadow-sm rounded-4">
+          <div class="card h-100 bg-white border-0 shadow-sm rounded-4 position-relative">
+            <div class="form-check position-absolute top-0 end-0 m-3 bg-white rounded-pill px-3 py-2 shadow-sm" style="z-index: 2;">
+              <input class="form-check-input compare-check me-1" type="checkbox" id="cmp-1"
+                     data-id="1" data-name="Анна, 28 лет" data-district="Центральный"
+                     data-price="800" data-size="Средний" data-exp="5"
+                     data-animals="Корги (своя)" data-phone="+7 999 123-45-67">
+              <label class="form-check-label small fw-bold text-dark" for="cmp-1">Сравнить</label>
+            </div>
             <img src="images/Анна, 28 лет ситер.jpg" class="card-img-top" alt="Анна" style="height: 250px; object-fit: cover; object-position: top;">
             <div class="card-body p-4 d-flex flex-column">
-              <div class="d-flex justify-content-between align-items-start mb-2">
+              <div class="d-flex justify-content-between align-items-start mb-2 pe-5">
                 <h3 class="card-title h5 fw-bold mb-0 text-dark">Анна, 28 лет</h3>
                 <span class="badge bg-success bg-opacity-75 rounded-pill px-2">Проверенный</span>
               </div>
@@ -117,7 +131,7 @@
               <p class="card-text text-muted small mb-4">Опыт 5 лет. Живет в квартире со своим корги. Прогулки 3 раза в день, много внимания.</p>
               <div class="mt-auto d-flex justify-content-between align-items-center">
                 <span class="fw-bold fs-5 text-dark">800 ₽ <span class="fs-6 fw-normal text-muted">/ сутки</span></span>
-                <a class="btn btn-outline-primary rounded-pill px-3 fw-bold" href="booking.html">Выбрать</a>
+                <a class="btn btn-outline-primary rounded-pill px-3 fw-bold" href="booking.html?sitter=Анна">Выбрать</a>
               </div>
             </div>
           </div>
@@ -126,10 +140,17 @@
         <!-- Карточка 2 -->
         <div class="col-12 col-md-6 col-xl-4 sitter-card" 
              data-district="Северный" data-price="1000" data-size="Крупный" data-exp="8">
-          <div class="card h-100 bg-white border-0 shadow-sm rounded-4">
+          <div class="card h-100 bg-white border-0 shadow-sm rounded-4 position-relative">
+            <div class="form-check position-absolute top-0 end-0 m-3 bg-white rounded-pill px-3 py-2 shadow-sm" style="z-index: 2;">
+              <input class="form-check-input compare-check me-1" type="checkbox" id="cmp-2"
+                     data-id="2" data-name="Михаил, 34 года" data-district="Северный"
+                     data-price="1000" data-size="Крупный" data-exp="8"
+                     data-animals="Две собаки (свои)" data-phone="+7 999 234-56-78">
+              <label class="form-check-label small fw-bold text-dark" for="cmp-2">Сравнить</label>
+            </div>
             <img src="images/Михаил, 34 года ситер.jpg" class="card-img-top" alt="Михаил" style="height: 250px; object-fit: cover; object-position: top;">
             <div class="card-body p-4 d-flex flex-column">
-              <div class="d-flex justify-content-between align-items-start mb-2">
+              <div class="d-flex justify-content-between align-items-start mb-2 pe-5">
                 <h3 class="card-title h5 fw-bold mb-0 text-dark">Михаил, 34 года</h3>
                 <span class="badge bg-warning text-dark rounded-pill px-2">Топ-ситтер</span>
               </div>
@@ -137,7 +158,7 @@
               <p class="card-text text-muted small mb-4">Опыт 8 лет. Частный дом с большим участком. Выгул без поводка, активные игры.</p>
               <div class="mt-auto d-flex justify-content-between align-items-center">
                 <span class="fw-bold fs-5 text-dark">1000 ₽ <span class="fs-6 fw-normal text-muted">/ сутки</span></span>
-                <a class="btn btn-outline-primary rounded-pill px-3 fw-bold" href="booking.html">Выбрать</a>
+                <a class="btn btn-outline-primary rounded-pill px-3 fw-bold" href="booking.html?sitter=Михаил">Выбрать</a>
               </div>
             </div>
           </div>
@@ -146,10 +167,17 @@
         <!-- Карточка 3 -->
         <div class="col-12 col-md-6 col-xl-4 sitter-card" 
              data-district="Южный" data-price="600" data-size="Мелкий" data-exp="1">
-          <div class="card h-100 bg-white border-0 shadow-sm rounded-4">
+          <div class="card h-100 bg-white border-0 shadow-sm rounded-4 position-relative">
+            <div class="form-check position-absolute top-0 end-0 m-3 bg-white rounded-pill px-3 py-2 shadow-sm" style="z-index: 2;">
+              <input class="form-check-input compare-check me-1" type="checkbox" id="cmp-3"
+                     data-id="3" data-name="Ольга, 22 года" data-district="Южный"
+                     data-price="600" data-size="Мелкий" data-exp="1"
+                     data-animals="Нет" data-phone="+7 999 345-67-89">
+              <label class="form-check-label small fw-bold text-dark" for="cmp-3">Сравнить</label>
+            </div>
             <img src="images/Ольга, 22 года ситер.jpg" class="card-img-top" alt="Ольга" style="height: 250px; object-fit: cover; object-position: top;">
             <div class="card-body p-4 d-flex flex-column">
-              <div class="d-flex justify-content-between align-items-start mb-2">
+              <div class="d-flex justify-content-between align-items-start mb-2 pe-5">
                 <h3 class="card-title h5 fw-bold mb-0 text-dark">Ольга, 22 года</h3>
                 <span class="badge bg-secondary rounded-pill px-2">Новичок</span>
               </div>
@@ -157,7 +185,7 @@
               <p class="card-text text-muted small mb-4">Опыт 1 год. Квартира, без своих животных. Много свободного времени, ласка и забота.</p>
               <div class="mt-auto d-flex justify-content-between align-items-center">
                 <span class="fw-bold fs-5 text-dark">600 ₽ <span class="fs-6 fw-normal text-muted">/ сутки</span></span>
-                <a class="btn btn-outline-primary rounded-pill px-3 fw-bold" href="booking.html">Выбрать</a>
+                <a class="btn btn-outline-primary rounded-pill px-3 fw-bold" href="booking.html?sitter=Ольга">Выбрать</a>
               </div>
             </div>
           </div>
@@ -166,10 +194,17 @@
         <!-- Карточка 4 -->
         <div class="col-12 col-md-6 col-xl-4 sitter-card" 
              data-district="Северный" data-price="1200" data-size="Крупный" data-exp="10">
-          <div class="card h-100 bg-white border-0 shadow-sm rounded-4">
+          <div class="card h-100 bg-white border-0 shadow-sm rounded-4 position-relative">
+            <div class="form-check position-absolute top-0 end-0 m-3 bg-white rounded-pill px-3 py-2 shadow-sm" style="z-index: 2;">
+              <input class="form-check-input compare-check me-1" type="checkbox" id="cmp-4"
+                     data-id="4" data-name="Дмитрий, 40 лет" data-district="Северный"
+                     data-price="1200" data-size="Крупный" data-exp="10"
+                     data-animals="Две собаки (свои)" data-phone="+7 999 456-78-90">
+              <label class="form-check-label small fw-bold text-dark" for="cmp-4">Сравнить</label>
+            </div>
             <img src="images/Дмитрий, 40 лет ситер.jpg" class="card-img-top" alt="Дмитрий" style="height: 250px; object-fit: cover; object-position: top;">
             <div class="card-body p-4 d-flex flex-column">
-              <div class="d-flex justify-content-between align-items-start mb-2">
+              <div class="d-flex justify-content-between align-items-start mb-2 pe-5">
                 <h3 class="card-title h5 fw-bold mb-0 text-dark">Дмитрий, 40 лет</h3>
                 <span class="badge bg-success bg-opacity-75 rounded-pill px-2">Проверенный</span>
               </div>
@@ -177,7 +212,7 @@
               <p class="card-text text-muted small mb-4">Опыт 10 лет. Дом, две собаки. Работает из дома, всегда рядом с питомцем.</p>
               <div class="mt-auto d-flex justify-content-between align-items-center">
                 <span class="fw-bold fs-5 text-dark">1200 ₽ <span class="fs-6 fw-normal text-muted">/ сутки</span></span>
-                <a class="btn btn-outline-primary rounded-pill px-3 fw-bold" href="booking.html">Выбрать</a>
+                <a class="btn btn-outline-primary rounded-pill px-3 fw-bold" href="booking.html?sitter=Дмитрий">Выбрать</a>
               </div>
             </div>
           </div>
@@ -186,10 +221,17 @@
         <!-- Карточка 5 -->
         <div class="col-12 col-md-6 col-xl-4 sitter-card" 
              data-district="Центральный" data-price="900" data-size="Средний" data-exp="6">
-          <div class="card h-100 bg-white border-0 shadow-sm rounded-4">
+          <div class="card h-100 bg-white border-0 shadow-sm rounded-4 position-relative">
+            <div class="form-check position-absolute top-0 end-0 m-3 bg-white rounded-pill px-3 py-2 shadow-sm" style="z-index: 2;">
+              <input class="form-check-input compare-check me-1" type="checkbox" id="cmp-5"
+                     data-id="5" data-name="Елена, 31 год" data-district="Центральный"
+                     data-price="900" data-size="Средний" data-exp="6"
+                     data-animals="Кошка (своя)" data-phone="+7 999 567-89-01">
+              <label class="form-check-label small fw-bold text-dark" for="cmp-5">Сравнить</label>
+            </div>
             <img src="images/Елена, 31 год ситер.jpg" class="card-img-top" alt="Елена" style="height: 250px; object-fit: cover; object-position: top;">
             <div class="card-body p-4 d-flex flex-column">
-              <div class="d-flex justify-content-between align-items-start mb-2">
+              <div class="d-flex justify-content-between align-items-start mb-2 pe-5">
                 <h3 class="card-title h5 fw-bold mb-0 text-dark">Елена, 31 год</h3>
                 <span class="badge bg-warning text-dark rounded-pill px-2">Топ-ситтер</span>
               </div>
@@ -197,7 +239,7 @@
               <p class="card-text text-muted small mb-4">Опыт 6 лет. Уютная квартира, есть кошка. Аккуратный уход, ежедневные отчеты.</p>
               <div class="mt-auto d-flex justify-content-between align-items-center">
                 <span class="fw-bold fs-5 text-dark">900 ₽ <span class="fs-6 fw-normal text-muted">/ сутки</span></span>
-                <a class="btn btn-outline-primary rounded-pill px-3 fw-bold" href="booking.html">Выбрать</a>
+                <a class="btn btn-outline-primary rounded-pill px-3 fw-bold" href="booking.html?sitter=Елена">Выбрать</a>
               </div>
             </div>
           </div>
@@ -206,10 +248,17 @@
         <!-- Карточка 6 -->
         <div class="col-12 col-md-6 col-xl-4 sitter-card" 
              data-district="Южный" data-price="700" data-size="Средний" data-exp="2">
-          <div class="card h-100 bg-white border-0 shadow-sm rounded-4">
+          <div class="card h-100 bg-white border-0 shadow-sm rounded-4 position-relative">
+            <div class="form-check position-absolute top-0 end-0 m-3 bg-white rounded-pill px-3 py-2 shadow-sm" style="z-index: 2;">
+              <input class="form-check-input compare-check me-1" type="checkbox" id="cmp-6"
+                     data-id="6" data-name="Игорь, 26 лет" data-district="Южный"
+                     data-price="700" data-size="Средний" data-exp="2"
+                     data-animals="Нет" data-phone="+7 999 678-90-12">
+              <label class="form-check-label small fw-bold text-dark" for="cmp-6">Сравнить</label>
+            </div>
             <img src="images/Игорь, 26 лет ситер.jpg" class="card-img-top" alt="Игорь" style="height: 250px; object-fit: cover; object-position: top;">
             <div class="card-body p-4 d-flex flex-column">
-              <div class="d-flex justify-content-between align-items-start mb-2">
+              <div class="d-flex justify-content-between align-items-start mb-2 pe-5">
                 <h3 class="card-title h5 fw-bold mb-0 text-dark">Игорь, 26 лет</h3>
                 <span class="badge bg-secondary rounded-pill px-2">Новичок</span>
               </div>
@@ -217,7 +266,7 @@
               <p class="card-text text-muted small mb-4">Опыт 2 года. Просторная квартира. Гибкий график позволяет уделять много времени.</p>
               <div class="mt-auto d-flex justify-content-between align-items-center">
                 <span class="fw-bold fs-5 text-dark">700 ₽ <span class="fs-6 fw-normal text-muted">/ сутки</span></span>
-                <a class="btn btn-outline-primary rounded-pill px-3 fw-bold" href="booking.html">Выбрать</a>
+                <a class="btn btn-outline-primary rounded-pill px-3 fw-bold" href="booking.html?sitter=Игорь">Выбрать</a>
               </div>
             </div>
           </div>
@@ -226,10 +275,17 @@
         <!-- Карточка 7 -->
         <div class="col-12 col-md-6 col-xl-4 sitter-card" 
              data-district="Северный" data-price="1100" data-size="Мелкий" data-exp="7">
-          <div class="card h-100 bg-white border-0 shadow-sm rounded-4">
+          <div class="card h-100 bg-white border-0 shadow-sm rounded-4 position-relative">
+            <div class="form-check position-absolute top-0 end-0 m-3 bg-white rounded-pill px-3 py-2 shadow-sm" style="z-index: 2;">
+              <input class="form-check-input compare-check me-1" type="checkbox" id="cmp-7"
+                     data-id="7" data-name="Мария, 36 лет" data-district="Северный"
+                     data-price="1100" data-size="Мелкий" data-exp="7"
+                     data-animals="Две собаки (свои)" data-phone="+7 999 789-01-23">
+              <label class="form-check-label small fw-bold text-dark" for="cmp-7">Сравнить</label>
+            </div>
             <img src="images/Мария, 36 лет ситер.jpg" class="card-img-top" alt="Мария" style="height: 250px; object-fit: cover; object-position: top;">
             <div class="card-body p-4 d-flex flex-column">
-              <div class="d-flex justify-content-between align-items-start mb-2">
+              <div class="d-flex justify-content-between align-items-start mb-2 pe-5">
                 <h3 class="card-title h5 fw-bold mb-0 text-dark">Мария, 36 лет</h3>
                 <span class="badge bg-success bg-opacity-75 rounded-pill px-2">Проверенный</span>
               </div>
@@ -237,7 +293,7 @@
               <p class="card-text text-muted small mb-4">Опыт 7 лет. Дом с участком, две собаки. Прошла курсы по дрессировке.</p>
               <div class="mt-auto d-flex justify-content-between align-items-center">
                 <span class="fw-bold fs-5 text-dark">1100 ₽ <span class="fs-6 fw-normal text-muted">/ сутки</span></span>
-                <a class="btn btn-outline-primary rounded-pill px-3 fw-bold" href="booking.html">Выбрать</a>
+                <a class="btn btn-outline-primary rounded-pill px-3 fw-bold" href="booking.html?sitter=Мария">Выбрать</a>
               </div>
             </div>
           </div>
@@ -246,10 +302,17 @@
         <!-- Карточка 8 -->
         <div class="col-12 col-md-6 col-xl-4 sitter-card" 
              data-district="Центральный" data-price="950" data-size="Крупный" data-exp="9">
-          <div class="card h-100 bg-white border-0 shadow-sm rounded-4">
+          <div class="card h-100 bg-white border-0 shadow-sm rounded-4 position-relative">
+            <div class="form-check position-absolute top-0 end-0 m-3 bg-white rounded-pill px-3 py-2 shadow-sm" style="z-index: 2;">
+              <input class="form-check-input compare-check me-1" type="checkbox" id="cmp-8"
+                     data-id="8" data-name="Алексей, 29 лет" data-district="Центральный"
+                     data-price="950" data-size="Крупный" data-exp="9"
+                     data-animals="Лабрадор (свой)" data-phone="+7 999 890-12-34">
+              <label class="form-check-label small fw-bold text-dark" for="cmp-8">Сравнить</label>
+            </div>
             <img src="images/Алексей, 29 лет ситер.jpg" class="card-img-top" alt="Алексей" style="height: 250px; object-fit: cover; object-position: top;">
             <div class="card-body p-4 d-flex flex-column">
-              <div class="d-flex justify-content-between align-items-start mb-2">
+              <div class="d-flex justify-content-between align-items-start mb-2 pe-5">
                 <h3 class="card-title h5 fw-bold mb-0 text-dark">Алексей, 29 лет</h3>
                 <span class="badge bg-warning text-dark rounded-pill px-2">Топ-ситтер</span>
               </div>
@@ -257,7 +320,7 @@
               <p class="card-text text-muted small mb-4">Опыт 9 лет. Квартира, свой лабрадор. Обожает долгие прогулки в парке.</p>
               <div class="mt-auto d-flex justify-content-between align-items-center">
                 <span class="fw-bold fs-5 text-dark">950 ₽ <span class="fs-6 fw-normal text-muted">/ сутки</span></span>
-                <a class="btn btn-outline-primary rounded-pill px-3 fw-bold" href="booking.html">Выбрать</a>
+                <a class="btn btn-outline-primary rounded-pill px-3 fw-bold" href="booking.html?sitter=Алексей">Выбрать</a>
               </div>
             </div>
           </div>
@@ -267,6 +330,35 @@
     </div>
   </div>
 </main>
+
+<!-- Липкая панель сравнения -->
+<div id="compare-bar" class="position-fixed bottom-0 start-50 translate-middle-x mb-3 bg-white shadow-lg rounded-pill px-4 py-3 d-none align-items-center gap-3" style="z-index: 1050;">
+  <span class="fw-bold text-dark">Выбрано <span id="compare-count">0</span> ситтера</span>
+  <button type="button" id="compare-open" class="btn btn-primary rounded-pill px-4 fw-bold">Сравнить</button>
+  <button type="button" id="compare-clear" class="btn btn-link text-muted p-0 text-decoration-none">Очистить</button>
+</div>
+
+<!-- Модальное окно сравнения -->
+<div class="modal fade" id="compareModal" tabindex="-1" aria-labelledby="compareModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
+      <div class="modal-header border-0 bg-header-footer text-white pb-3">
+        <h2 class="modal-title h4 fw-bold" id="compareModalLabel">Сравнение ситтеров</h2>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body p-0 compare-table-wrap">
+        <div class="table-responsive">
+          <table class="table table-bordered align-middle mb-0" id="compare-table">
+            <thead>
+              <tr id="compare-head"></tr>
+            </thead>
+            <tbody id="compare-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Подвал -->
 <footer class="bg-header-footer text-white py-5 mt-auto">
