@@ -187,3 +187,52 @@ main {
   font-size: 1.25rem;
   flex-shrink: 0;
 }
+
+/* --- ТАБЛИЦА СРАВНЕНИЯ --- */
+.compare-table-wrap {
+  background-color: var(--brand-light); /* Светло-зеленый фон вокруг таблицы */
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.compare-table-wrap .table {
+  --bs-table-bg: transparent;
+  --bs-table-border-color: rgba(81, 96, 40, 0.2); /* Оливковые границы */
+  margin-bottom: 0;
+}
+
+/* Заголовок таблицы (имена ситтеров) */
+.compare-table-wrap .table thead th {
+  background-color: var(--brand-dark) !important; /* Темно-оливковый */
+  color: #ffffff !important;
+  border-bottom: 2px solid var(--brand-dark);
+  font-weight: 600;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Первый столбец заголовка (Характеристика) */
+.compare-table-wrap .table thead th:first-child {
+  background-color: #3e4a1e !important; /* Чуть темнее для контраста */
+}
+
+/* Ячейки таблицы. Делаем все ячейки сплошного светло-зеленого цвета */
+.compare-table-wrap .table tbody th,
+.compare-table-wrap .table tbody td {
+  background-color: var(--brand-light) !important; /* Тот же цвет, что и фон вокруг */
+  color: #333;
+  vertical-align: middle;
+}
+
+/* Левая колонка (названия характеристик) — делаем текст темнее и жирнее для читаемости */
+.compare-table-wrap .table tbody th {
+  color: var(--brand-dark) !important;
+  font-weight: 600;
+  width: 30%; /* Фиксируем ширину первого столбца */
+}
+
+/* Убираем эффект зебры при наведении, чтобы цвет оставался сплошным */
+.compare-table-wrap .table tbody tr:hover th,
+.compare-table-wrap .table tbody tr:hover td {
+  background-color: var(--brand-light) !important; 
+}

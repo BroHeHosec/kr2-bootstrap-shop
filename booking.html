@@ -13,7 +13,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-header-footer sticky-top py-3 shadow-sm">
   <div class="container">
     <a class="navbar-brand fw-bold fs-4" href="index.html">🐕 ДогПередержка</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-label="Переключить навигацию">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mainNavbar">
@@ -35,7 +35,6 @@
       <h1 class="display-5 fw-bold text-dark mb-3">Подобрать<br>передержку</h1>
       <p class="lead text-muted mb-4">Оставьте контакты и желаемые даты. Наш менеджер поможет выбрать ситтера и ответит на вопросы.</p>
       
-      <!-- Логичная скидка: чем дольше собака живет у ситтера, тем дешевле сутки -->
       <div class="alert alert-success bg-white border-0 shadow-sm rounded-4 mb-4" role="alert" style="border-left: 4px solid #516028 !important;">
         <p class="mb-0 fw-medium text-dark"><strong>Выгодно:</strong> скидка 10% на всю передержку при бронировании от 14 дней.</p>
       </div>
@@ -53,7 +52,6 @@
     <!-- Правая колонка: Форма -->
     <div class="col-12 col-lg-7">
       <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
-        <!-- Добавлен атрибут novalidate, чтобы отключить стандартные всплывающие окна браузера и использовать нашу подсветку -->
         <form id="booking-form" novalidate>
           <div class="row g-4">
             
@@ -85,21 +83,25 @@
               </div>
             </div>
 
-            <!-- Ситтер -->
+            <!-- Ситтер + Кнопка копирования -->
             <div class="col-12">
               <label for="b-sitter" class="form-label text-muted small fw-bold">Выберите ситтера *</label>
               <select id="b-sitter" class="form-select form-select-lg shadow-none" required>
                 <option selected disabled value="">Выберите из списка</option>
-                <option value="Анна — Центральный, 800 ₽">Анна — Центральный, 800 ₽</option>
-                <option value="Михаил — Северный, 1000 ₽">Михаил — Северный, 1000 ₽</option>
-                <option value="Ольга — Южный, 600 ₽">Ольга — Южный, 600 ₽</option>
-                <option value="Дмитрий — Северный, 1200 ₽">Дмитрий — Северный, 1200 ₽</option>
-                <option value="Елена — Центральный, 900 ₽">Елена — Центральный, 900 ₽</option>
-                <option value="Игорь — Южный, 700 ₽">Игорь — Южный, 700 ₽</option>
-                <option value="Мария — Северный, 1100 ₽">Мария — Северный, 1100 ₽</option>
-                <option value="Алексей — Центральный, 950 ₽">Алексей — Центральный, 950 ₽</option>
+                <option value="Анна" data-price="800" data-district="Центральный" data-phone="+7 999 123-45-67">Анна — Центральный, 800 ₽</option>
+                <option value="Михаил" data-price="1000" data-district="Северный" data-phone="+7 999 234-56-78">Михаил — Северный, 1000 ₽</option>
+                <option value="Ольга" data-price="600" data-district="Южный" data-phone="+7 999 345-67-89">Ольга — Южный, 600 ₽</option>
+                <option value="Дмитрий" data-price="1200" data-district="Северный" data-phone="+7 999 456-78-90">Дмитрий — Северный, 1200 ₽</option>
+                <option value="Елена" data-price="900" data-district="Центральный" data-phone="+7 999 567-89-01">Елена — Центральный, 900 ₽</option>
+                <option value="Игорь" data-price="700" data-district="Южный" data-phone="+7 999 678-90-12">Игорь — Южный, 700 ₽</option>
+                <option value="Мария" data-price="1100" data-district="Северный" data-phone="+7 999 789-01-23">Мария — Северный, 1100 ₽</option>
+                <option value="Алексей" data-price="950" data-district="Центральный" data-phone="+7 999 890-12-34">Алексей — Центральный, 950 ₽</option>
               </select>
               <div class="invalid-feedback">Пожалуйста, выберите ситтера.</div>
+              
+              <button type="button" id="copy-sitter" class="btn btn-outline-secondary btn-sm rounded-pill mt-2 d-none">
+                📋 Скопировать контакты ситтера
+              </button>
             </div>
 
             <!-- Даты -->
@@ -114,7 +116,7 @@
               <div class="invalid-feedback">Дата выезда должна быть позже даты заезда.</div>
             </div>
 
-            <!-- Кол-во собак и размер -->
+            <!-- Кол-во собак и Порода -->
             <div class="col-12 col-md-6">
               <label for="b-count" class="form-label text-muted small fw-bold">Количество собак *</label>
               <input type="number" id="b-count" class="form-control form-control-lg shadow-none" 
@@ -122,49 +124,75 @@
               <div class="invalid-feedback">Можно указать от 1 до 5 собак.</div>
             </div>
             <div class="col-12 col-md-6">
-              <label for="b-breed" class="form-label text-muted small fw-bold">Порода / размер *</label>
+              <label for="b-breed" class="form-label text-muted small fw-bold">Порода *</label>
               <input type="text" id="b-breed" class="form-control form-control-lg shadow-none" 
-                     placeholder="Корги, средний" required minlength="3">
-              <div class="invalid-feedback">Укажите породу или размер собаки.</div>
+                     placeholder="Корги" required minlength="3">
+              <div class="invalid-feedback">Укажите породу собаки.</div>
+            </div>
+            
+            <!-- Размер и вес -->
+            <div class="col-12 col-md-6">
+              <label for="b-weight" class="form-label text-muted small fw-bold">Размер и вес *</label>
+              <select id="b-weight" class="form-select form-select-lg shadow-none" required>
+                <option selected disabled value="">Выберите категорию</option>
+                <option value="Мелкий (2–5 кг)">Мелкий (2–5 кг)</option>
+                <option value="Мелкий (5–10 кг)">Мелкий (5–10 кг)</option>
+                <option value="Средний (10–25 кг)">Средний (10–25 кг)</option>
+                <option value="Крупный (25–40 кг)">Крупный (25–40 кг)</option>
+                <option value="Очень крупный (от 40 кг)">Очень крупный (от 40 кг)</option>
+              </select>
+              <div class="invalid-feedback">Выберите размер и вес собаки.</div>
+            </div>
+
+            <!-- Комментарий -->
+            <div class="col-12">
+              <label for="b-comment" class="form-label text-muted small fw-bold">Комментарий для ситтера</label>
+              <textarea id="b-comment" class="form-control shadow-none" rows="3"
+                        placeholder="Особенности характера, привычки, аллергии..." maxlength="300"></textarea>
             </div>
 
             <!-- Доп услуги -->
-            <div class="col-12 mt-4">
+            <div class="col-12 mt-2">
               <label class="form-label text-muted small fw-bold mb-3">Дополнительные услуги</label>
               <div class="row g-2">
                 <div class="col-12 col-md-6">
                   <div class="form-check p-3 border rounded-3 bg-light bg-opacity-50 h-100">
                     <input class="form-check-input extra ms-0 me-2" type="checkbox" value="300" id="ex-walk">
-                    <label class="form-check-label text-dark" for="ex-walk">Доп. выгул <span class="text-muted float-end">+300 ₽</span></label>
+                    <label class="form-check-label text-dark d-flex justify-content-between" for="ex-walk">Доп. выгул <span class="text-muted">+300 ₽</span></label>
                   </div>
                 </div>
                 <div class="col-12 col-md-6">
                   <div class="form-check p-3 border rounded-3 bg-light bg-opacity-50 h-100">
                     <input class="form-check-input extra ms-0 me-2" type="checkbox" value="500" id="ex-bath">
-                    <label class="form-check-label text-dark" for="ex-bath">Купание <span class="text-muted float-end">+500 ₽</span></label>
+                    <label class="form-check-label text-dark d-flex justify-content-between" for="ex-bath">Купание <span class="text-muted">+500 ₽</span></label>
                   </div>
                 </div>
                 <div class="col-12 col-md-6">
                   <div class="form-check p-3 border rounded-3 bg-light bg-opacity-50 h-100">
                     <input class="form-check-input extra ms-0 me-2" type="checkbox" value="800" id="ex-vet">
-                    <label class="form-check-label text-dark" for="ex-vet">Вет. осмотр <span class="text-muted float-end">+800 ₽</span></label>
+                    <label class="form-check-label text-dark d-flex justify-content-between" for="ex-vet">Вет. осмотр <span class="text-muted">+800 ₽</span></label>
                   </div>
                 </div>
                 <div class="col-12 col-md-6">
                   <div class="form-check p-3 border rounded-3 bg-light bg-opacity-50 h-100">
                     <input class="form-check-input extra ms-0 me-2" type="checkbox" value="700" id="ex-delivery">
-                    <label class="form-check-label text-dark" for="ex-delivery">Доставка <span class="text-muted float-end">+700 ₽</span></label>
+                    <label class="form-check-label text-dark d-flex justify-content-between" for="ex-delivery">Доставка <span class="text-muted">+700 ₽</span></label>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Итог -->
+            <!-- Предупреждение о сезоне -->
             <div class="col-12 mt-4">
+              <div id="season-warning" class="alert alert-warning d-none rounded-4 shadow-sm mb-0" role="alert"></div>
+            </div>
+
+            <!-- Итог -->
+            <div class="col-12 mt-2">
               <div class="alert alert-success bg-success bg-opacity-10 border-success border-opacity-25 rounded-4 p-4 d-flex justify-content-between align-items-center">
                 <div>
                   <h6 class="fw-bold mb-1 text-dark">Итоговая стоимость:</h6>
-                  <small class="text-muted">Расчёт: цена ситтера × дни + доп. услуги</small>
+                  <small class="text-muted" id="calc-breakdown">Выберите ситтера и даты</small>
                 </div>
                 <div class="fs-3 fw-bold text-success">
                   <span id="total">0</span> ₽
@@ -184,8 +212,8 @@
             </div>
 
             <!-- Кнопки -->
-            <div class="col-12 d-flex gap-3 mt-4">
-              <button class="btn btn-warning text-dark btn-lg px-5 py-3 rounded-pill fw-bold shadow-sm w-100 w-md-auto" type="submit">Отправить заявку</button>
+            <div class="col-12 mt-4 d-grid d-md-flex justify-content-md-start">
+              <button class="btn btn-warning text-dark btn-lg px-5 py-3 rounded-pill fw-bold shadow-sm" type="submit">Отправить заявку</button>
             </div>
           </div>
         </form>
@@ -234,6 +262,16 @@
     </div>
   </div>
 </footer>
+
+<!-- Toast: Уведомление о копировании -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1090;">
+  <div id="copy-toast" class="toast align-items-center text-bg-success border-0 rounded-4" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body fw-medium">Скопировано!</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Закрыть"></button>
+    </div>
+  </div>
+</div>
 
 <!-- Подключение скриптов -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
